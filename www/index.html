@@ -22,30 +22,41 @@
 <!-- Home -->
 <div data-role="page" id="page1">
     <div id="menu" data-theme="b" data-role="header" data-position="fixed">
-        <div id="grid" class="ui-grid-d grid">
-            <div class="ui-block-a">
-                <input data-icon="back" data-iconpos="left" value="Back" type="submit">
+      
+        
+        <div id="grid" class="ui-grid-d grid buttonborder">
+            <div  class="ui-block-a">
+           
+                    <a data-role="button" href="#page1" data-icon="back" data-iconpos="left">
+                        &lt;&lt;
+                    </a>
             </div>
             <div class="ui-block-b">
-                <img width="60" src="img/logo_V1.png" alt="extra">
+                <img width="70" src="img/logo_V2.png" alt="extra"><br>
+                    <a id="points">
+                        Points: 500
+                    </a>
             </div>
             <div class="ui-block-c">
-                <a id="points">
-                    Points: 500
-                </a>
-                <h4 id ="current">
-                    Current Menu
-                </h4>
+            
+                    <h4 id ="current">
+                        Current Menu
+                    </h4>
             </div>
             <div class="ui-block-d">
-                <a data-role="button" href="#page1" data-icon="search" data-iconpos="left">
-                    search
-                </a>
+                <div data-role="fieldcontain">
+                    <input name="" id="searchinput1" placeholder="" value="" type="search">
+                </div>
             </div>
-            <div class="ui-block-e">
+            <div class="ui-block-e buttonborder">
+               
                 <input data-icon="check" data-iconpos="left" value="Login" type="submit">
+            
             </div>
         </div>
+    
+    </div>
+    <div data-role="content">
     </div>
 
     <div id="content" data-role="content">
