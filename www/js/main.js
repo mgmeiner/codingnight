@@ -6,6 +6,16 @@ $(window).on("navigate", function (event, data) {
     }
 });
 
+$(document).ready(function() {
+    $(document).ajaxStart(function() {
+        $.mobile.loading('show');
+    });
+
+    $(document).ajaxStop(function() {
+        $.mobile.loading('hide');
+    });
+});
+
 var Common = {
     switchContent: function(partID) {
         $.ajax({
