@@ -1,21 +1,23 @@
 var oldContent;
 
 $(window).on("navigate", function (event, data) {
-    if (data.state.direction == 'back') {
-        $( "#content" ).html(oldContent);
-    }
+    checkanker();
 });
 
+
 $(window).load(function() {
+    checkanker();
+});
+
+function checkanker() {
     var anker = window.location.hash.substring(1);
-    
+ 
     if (anker == '') {
         Common.switchContent('start');
     } else {
         Common.switchContent(anker);
     }
-        
-});
+};
 
 $(document).ready(function() {
     $(document).ajaxStart(function() {
