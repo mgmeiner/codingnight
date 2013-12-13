@@ -1,0 +1,45 @@
+<script type="text/javascript">
+Common.getCategoriesSelect();
+</script>
+
+        <div data-role="fieldcontain">
+            <input name="search_term" id="search_term" placeholder="Titel oder Beschreibung"
+            value="" type="text">
+        </div>
+        <div data-role="fieldcontain">
+            <input name="points_from" id="points_from" placeholder="Punkte von" value=""
+            type="text">
+        </div>
+        <div data-role="fieldcontain">
+            <input name="points_to" id="points_to" placeholder="Punkte bis" value=""
+            type="text">
+        </div>
+        <div data-role="fieldcontain">
+            <label for="category_selector">
+                Kategorie:
+            </label>
+            <select id="category_selector" name="category_selector">
+            </select>
+        </div>
+        <div data-role="fieldcontain">
+            <label for="order_by">
+                Sortieren:
+            </label>
+            <select id="order_by" name="order_by">
+                <option value="points asc">
+                    Punkte aufsteigend
+                </option>
+                <option value="points desc">
+                    Punkte absteigend
+                </option>
+                <option value="title asc">
+                    Titel aufsteigend
+                </option>
+                <option value="title desc">
+                    Titel absteigend
+                </option>
+            </select>
+        </div>
+        <button id="search_submit" name="search_submit" onClick="Common.doSearch()">
+            Suche starten
+        </button>
