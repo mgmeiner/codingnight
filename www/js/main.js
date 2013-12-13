@@ -1,9 +1,10 @@
 var oldContent;
 
 $(window).on("navigate", function (event, data) {
-    checkanker();
+    if (data.state.direction == 'back') {
+        checkanker();
+    }
 });
-
 
 $(window).load(function() {
     checkanker();
