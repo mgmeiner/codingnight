@@ -1,4 +1,3 @@
-var oldContent;
 var serviceUrl = "http://193.158.235.145:9000/";
 
 $(window).on("navigate", function (event, data) {
@@ -7,7 +6,7 @@ $(window).on("navigate", function (event, data) {
     }
 });
 
-$(window).load(function() {
+$(document).ready(function() {
     checkanker();
 });
 
@@ -16,6 +15,10 @@ function checkanker() {
  
     if (anker == '') {
         Common.switchContent('start');
+    } else if (anker.contains('-')) {
+        anker = anker.slice(0, anker.indexOf('-'));
+        var someId = window.location.hash.slice(window.location.hash.indexOf('-') + 1, window.location.hash.length);
+        Common.switchContent(anker, '-' + someId);
     } else {
         Common.switchContent(anker);
     }
@@ -67,10 +70,9 @@ var Common = {
 		Common.doSomethingEveryTime();
         $.ajax({
             url: partID + ".html",
-            cache: false
+            cache: true
         })
         .done(function(html) {
-
             var hash = partID;
 
             if (suffix != undefined) {
@@ -78,9 +80,7 @@ var Common = {
             }
 
             window.location.href = "#" + hash;
-            var $content = $("#content");
-            oldContent = $content.html();
-            $content.html(html).trigger("create");
+            $("#content").html(html).trigger("create");
         });
     },
 
@@ -89,15 +89,12 @@ var Common = {
 		Common.doSomethingEveryTime();
         $.ajax({
             url: url_whole,
-            cache: false
+            cache: true
         })
         .done(function(html) {
 			window.location.href = "#" + partID;
 			window.parameters = paramString;
-            var $content = $("#content");
-            oldContent = $content.html();
-            $content.html(html);
-			$content.trigger("create");
+            $("#content").html(html).trigger("create");
         });
     },
 	
