@@ -1,15 +1,14 @@
-<form class="login" id="login" action="???" method="POST">
+
             <div data-role="fieldcontain">
-                <label for="textinput3">
+                <label for="username">
                     Username
                 </label>
-                <input name="username" id="textinput3" placeholder="" value="" type="text">
+                <input name="username" id="username" placeholder="" value="" type="text">
             </div>
             <div data-role="fieldcontain">
-                <label for="textinput4">
+                <label for="password">
                     Password
                 </label>
-                <input name="password" id="textinput4" placeholder="" value="" type="text">
+                <input name="password" id="password" placeholder="" value="" type="text">
             </div>
-            <input value="Submit" type="submit">
-</form>
+            <button id="login_submit" name="login_submit" onClick="Common.login()">Login</button>
