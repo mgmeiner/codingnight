@@ -6,6 +6,17 @@ $(window).on("navigate", function (event, data) {
     }
 });
 
+$(window).load(function() {
+    var anker = window.location.hash.substring(1);
+    
+    if (anker == '') {
+        Common.switchContent('start');
+    } else {
+        Common.switchContent(anker);
+    }
+        
+});
+
 $(document).ready(function() {
     $(document).ajaxStart(function() {
         $.mobile.loading('show');
