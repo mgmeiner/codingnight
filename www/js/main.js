@@ -40,6 +40,25 @@ $(document).ready(function() {
 });
 
 var Common = {
+	loadAccountData: function() {
+		$.getJSON(serviceUrl+"account/data", function( data ) {
+			$("#account_data").html($("#account_data").html()+"<h4>"+data[0].email+"</h4><h4>"+data[0].company+"</h4><h4>"+data[0].concept+"</h4><h4>"+data[0].employeeCount+"</h4>");
+			//$("#account_data").html($("#account_data").html()+"<h4>"+data[0].company+"</h4>");
+			//$("#account_data").html($("#account_data").html()+"<h4>"+data[0].concept+"</h4>");
+			//$("#account_data").html($("#account_data").html()+"<h4>"+data[0].employeeCount+"</h4>");
+        });
+	},
+	
+	loadAddressData: function() {
+		$.getJSON(serviceUrl+"account/data", function( data ) {
+			$("#address_data").html($("#address_data").html()+"<h4>"+data[0].address.firstName+"</h4>");
+			$("#address_data").html($("#address_data").html()+"<h4>"+data[0].address.lastName+"</h4>");
+			$("#address_data").html($("#address_data").html()+"<h4>"+data[0].address.street+"</h4>");
+			$("#address_data").html($("#address_data").html()+"<h4>"+data[0].address.city+"</h4>");
+			$("#address_data").html($("#address_data").html()+"<h4>"+data[0].address.country+"</h4>");
+        });
+	},
+	
 	doSomethingEveryTime: function() {
 		Common.getPoints();
 	},

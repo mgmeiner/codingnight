@@ -1,0 +1,23 @@
+
+        <div data-role="collapsible-set">
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>
+                    Accountdaten
+                </h3>
+				<div id="account_data"></div>
+            </div>
+            <div data-role="collapsible">
+                <h3>
+                    Addressdaten
+                </h3>
+				<div id="address_data"></div>
+            </div>
+        </div>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+Common.loadAccountData();
+Common.loadAddressData();
+});
+</script>
