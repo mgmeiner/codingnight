@@ -30,6 +30,24 @@ var Common = {
         });
     },
 
+	switchContentWithParams: function(partID, paramString) {
+		var url_whole = partID+".html";
+		
+        $.ajax({
+            url: url_whole,
+			//data: paramString,
+            cache: false
+        })
+        .done(function(html) {
+            //window.location.href = "?" + paramString + "#" + partID;
+			window.location.href = "#" + partID;
+			window.parameters = paramString;
+            var $content = $("#content");
+            oldContent = $content.html();
+            $content.html(html);
+        });
+    },
+	
     displayCategories: function() {
         $.getJSON("http://extra.apiary.io/reward", function( data ) {
             var items = [];
@@ -50,5 +68,47 @@ var Common = {
                     });
             });
         });
-    }
+    },
+	
+	getCategoriesSelect: function() {
+		$.getJSON("http://extra.apiary.io/reward", function( data ) {
+            var items = [];
+            $.each( data, function(key, val) {
+				$("#category_selector").append($('<option></option>').val(val.id).html(val.title));
+            });
+        });
+	},
+	
+	doSearch: function() {
+		searchTerm = $('#search_term').val();
+		pointsFrom = $('#points_from').val();
+		pointsTo = $('#points_to').val();
+		categoryId = $('#category_selector').val();
+		orderBy = $('#order_by').val();
+		
+		var params = "searchTerm="+searchTerm+"&pointsFrom="+pointsFrom+"&pointsTo="+pointsTo+"&orderBy="+orderBy+"&category="+categoryId;
+		
+		Common.switchContentWithParams('search_result', params);
+		/*
+	 	$.getJSON("http://extra.apiary.io/reward/search/?searchTerm="+searchTerm+"&pointsFrom="+pointsFrom+"&pointsTo="+pointsTo+"&orderBy="+orderBy+"&category="+categoryId, function( data ) {
+            var items = [];
+            $.each( data, function(key, val) {
+				$("#category_selector").append($('<option></option>').val(val).html(val.title));
+            });
+        });
+		*/
+	},
+	
+	getSearchResults: function() {
+	    $.getJSON("http://extra.apiary.io/reward/search/?"+window.parameters, function( data ) {
+            var items = [];
+            $.each( data, function(key, val) {
+                items.push("<li id='" + key + "'>" + val.title + "</li>");
+            });
+            $( "<ul/>", {
+                "class": "koccimu",
+                html: items.join( "" )
+            }).appendTo( "#search_results");
+        });
+	}
 };
