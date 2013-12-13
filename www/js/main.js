@@ -40,7 +40,12 @@ $(document).ready(function() {
 });
 
 var Common = {
+	doSomethingEveryTime: function() {
+		Common.getPoints();
+	},
+	
     switchContent: function(partID, suffix) {
+		Common.doSomethingEveryTime();
         $.ajax({
             url: partID + ".html",
             cache: false
@@ -63,7 +68,7 @@ var Common = {
 
 	switchContentWithParams: function(partID, paramString) {
 		var url_whole = partID+".html";
-		
+		Common.doSomethingEveryTime();
         $.ajax({
             url: url_whole,
             cache: false
@@ -165,12 +170,7 @@ var Common = {
 		$.ajax({
 			url: serviceUrl+"loginCheck",
 			cache: false,
-			dataType: "json"/*,
-			headers: {          
-				 Accept : "application/json; charset=utf-8",         
-				"Content-Type": "application/json; charset=utf-8"   
-			},
-			accepts: {text: "application/json"}		*/	
+			dataType: "json"
         }).done(function(html) {
 			window.username = username;
 			window.password = password;
@@ -181,5 +181,11 @@ var Common = {
 			window.password = "";
 			alert( "Username/Password falsch" );
 		});
+	},
+	
+	getPoints: function() {
+		$.getJSON(serviceUrl+"account/data", function( data ) {
+            $('#pointbalance').text("Points: " + data[0].pointBalance);
+        });
 	}
 };
