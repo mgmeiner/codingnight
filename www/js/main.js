@@ -17,13 +17,13 @@ $(document).ready(function() {
 });
 
 var Common = {
-    switchContent: function(partID) {
+    switchContent: function(partID, suffix) {
         $.ajax({
             url: partID + ".html",
             cache: false
         })
         .done(function(html) {
-            window.location.href = "#" + partID;
+            window.location.href = "#" + partID + suffix;
             var $content = $("#content");
             oldContent = $content.html();
             $content.html(html);
@@ -61,7 +61,7 @@ var Common = {
 
             $.each(data, function(key, val) {
                 var categoryId = "category-" + val.id;
-                $categoryWrapper.append('<div id="' + categoryId + '" class="category-box"></div>');
+                $categoryWrapper.append('<div id="' + categoryId + '" class="category-box" onclick="Common.switchContent(\'rewardList\', -' + val.id + ');"></div>');
                 $("#" + categoryId).loadTemplate($categoryTemplate,
                     {
                         title: val.title,
@@ -111,5 +111,18 @@ var Common = {
                 html: items.join( "" )
             }).appendTo( "#search_results");
         });
-	}
+	},
+
+    loadRewardsForCategory: function(categoryId) {
+        $.getJSON("http://extra.apiary.io/rewardcategory/" + categoryId + "/reward", function(data) {
+            var items = [];
+            $.each( data, function(key, val) {
+                items.push("<li id='" + key + "'>" + val.title + "</li>");
+            });
+            $( "<ul/>", {
+                "class": "koccimu",
+                html: items.join( "" )
+            }).appendTo( "#rewards");
+        });
+    }
 };
