@@ -160,7 +160,7 @@ var Common = {
                 $("#" + rewardId).loadTemplate($rewardsTemplate,
                     {
                         title: val.title,
-                        picture: 'http://193.158.235.145:9000/' + val.imageURL,
+                        picture: 'http://193.158.235.145:9000/media/' + val.imageURL,
                         points: val.points
                     });
             });
