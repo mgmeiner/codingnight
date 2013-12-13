@@ -47,16 +47,15 @@ var Common = {
 		
         $.ajax({
             url: url_whole,
-			//data: paramString,
             cache: false
         })
         .done(function(html) {
-            //window.location.href = "?" + paramString + "#" + partID;
 			window.location.href = "#" + partID;
 			window.parameters = paramString;
             var $content = $("#content");
             oldContent = $content.html();
             $content.html(html);
+			$content.trigger("create");
         });
     },
 	
@@ -85,6 +84,7 @@ var Common = {
 	getCategoriesSelect: function() {
 		$.getJSON("http://extra.apiary.io/reward", function( data ) {
             var items = [];
+			$("#category_selector").children().remove();
             $.each( data, function(key, val) {
 				$("#category_selector").append($('<option></option>').val(val.id).html(val.title));
             });
@@ -101,14 +101,6 @@ var Common = {
 		var params = "searchTerm="+searchTerm+"&pointsFrom="+pointsFrom+"&pointsTo="+pointsTo+"&orderBy="+orderBy+"&category="+categoryId;
 		
 		Common.switchContentWithParams('search_result', params);
-		/*
-	 	$.getJSON("http://extra.apiary.io/reward/search/?searchTerm="+searchTerm+"&pointsFrom="+pointsFrom+"&pointsTo="+pointsTo+"&orderBy="+orderBy+"&category="+categoryId, function( data ) {
-            var items = [];
-            $.each( data, function(key, val) {
-				$("#category_selector").append($('<option></option>').val(val).html(val.title));
-            });
-        });
-		*/
 	},
 	
 	getSearchResults: function() {
