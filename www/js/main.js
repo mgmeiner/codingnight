@@ -61,8 +61,7 @@ var Common = {
             window.location.href = "#" + hash;
             var $content = $("#content");
             oldContent = $content.html();
-            $content.html(html);
-            $content.trigger("create");
+            $content.html(html).trigger("create");
         });
     },
 
@@ -101,7 +100,7 @@ var Common = {
     },
 
     displayRewardDetail: function(id) {
-        $.getJSON("http://extra.apiary.io/reward/" + id, function(data) {
+        $.getJSON(serviceUrl + "reward/" + id, function(data) {
             $.each(data, function(key, val) {
                  $("#rewardDetail").loadTemplate($("#template"),
                  {
@@ -109,7 +108,7 @@ var Common = {
                         description: 'Beschreibung: ' + val.description,
                         manufacturer: 'Hersteller: ' +val.manufacturer,
                         points: 'Punkte: ' + val.points,
-                        picture: 'http://193.158.235.145:9000/' + val.imageURL
+                        picture: 'http://193.158.235.145:9000/media/' +  val.imageURL
                 });
             });
         });
@@ -154,12 +153,22 @@ var Common = {
         $.getJSON(serviceUrl+"rewardcategory/" + categoryId + "/reward", function(data) {
             var items = [];
             $.each( data, function(key, val) {
-                items.push("<li id='" + key + "'>" + val.title + "</li>");
+                items.push(val.title, val.imageURL, val.id, val.points);
             });
-            $( "<ul/>", {
-                "class": "koccimu",
-                html: items.join( "" )
-            }).appendTo( "#rewards");
+
+            var $rewardWrapper = $("#rewards");
+            var $rewardsTemplate = $("#template");
+
+            $.each(data, function(key, val) {
+                var rewardId = "reward-" + val.id;
+                $rewardWrapper.append('<div id="' + rewardId + '" class="reward-box" onclick="Common.switchContent(\'rewardDetail\', -' + val.id +');"></div>');
+                $("#" + rewardId).loadTemplate($rewardsTemplate,
+                    {
+                        title: val.title,
+                        picture: 'http://193.158.235.145:9000/media/' + val.imageURL,
+                        points: val.points
+                    });
+            });
         });
     },
 	

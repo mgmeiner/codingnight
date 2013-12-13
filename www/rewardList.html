@@ -1,8 +1,23 @@
 <script type="text/javascript">
     var category = window.location.hash.slice(window.location.hash.indexOf('-') + 1, window.location.hash.length);
     Common.loadRewardsForCategory(category);
+
+    $(document).ajaxStop(function() {
+        $('#content').trigger('create');
+    });
 </script>
 
-<div id="rewards">
+<script type="text/html" id="template">
+        <div class="img-wrapper">
+            <img data-src="picture" data-alt="title"/>
+            <button type="button" data-mini="true">detail</button>
+        </div>
+        <div class="reward-detail">
+            <p data-content="title"></p>
+            <p>Points: <span data-content="points"></span></p>
+        </div>
 
-</div>
+        <div style="clear:both;"></div>
+</script>
+
+<div id="rewards"></div>
