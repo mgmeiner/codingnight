@@ -47,8 +47,7 @@ var Common = {
             window.location.href = "#" + hash;
             var $content = $("#content");
             oldContent = $content.html();
-            $content.html(html);
-            $content.trigger("create");
+            $content.html(html).trigger("create");
         });
     },
 
@@ -130,12 +129,22 @@ var Common = {
         $.getJSON("http://extra.apiary.io/rewardcategory/" + categoryId + "/reward", function(data) {
             var items = [];
             $.each( data, function(key, val) {
-                items.push("<li id='" + key + "'>" + val.title + "</li>");
+                items.push(val.title, val.imageURL, val.id, val.points);
             });
-            $( "<ul/>", {
-                "class": "koccimu",
-                html: items.join( "" )
-            }).appendTo( "#rewards");
+
+            var $rewardWrapper = $("#rewards");
+            var $rewardsTemplate = $("#template");
+
+            $.each(data, function(key, val) {
+                var rewardId = "reward-" + val.id;
+                $rewardWrapper.append('<div id="' + rewardId + '" class="reward-box"></div>');
+                $("#" + rewardId).loadTemplate($rewardsTemplate,
+                    {
+                        title: val.title,
+                        picture: 'http://193.158.235.145:9000/' + val.imageURL,
+                        points: val.points
+                    });
+            });
         });
     }
 };

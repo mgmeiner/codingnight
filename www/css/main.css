@@ -17,3 +17,30 @@
     padding-bottom: 5px;
     cursor: pointer;
 }
+
+#rewards .img-wrapper {
+    padding-left: 5px;
+    padding-right: 5px;
+    max-width: 130px;
+    float: left;
+}
+
+#rewards img {
+    max-height: 100% ;
+    max-width: 100%;
+    z-index: -100;
+    padding-top: 1px;
+    padding-left: 1px;
+}
+
+.reward-box {
+    max-width: 500px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    box-shadow: 0 0 0 4px rgba(4, 6, 9, 0.09);
+    border-radius: 15px;
+    border-width: thin;
+}
+
+#rewards .reward-detail {
+}
