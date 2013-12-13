@@ -34,12 +34,21 @@ var Common = {
         $.getJSON("http://extra.apiary.io/reward", function( data ) {
             var items = [];
             $.each( data, function(key, val) {
-                items.push("<li id='" + key + "'>" + val.title + "</li>");
+                items.push(val.title, val.imageURL, val.id);
             });
-            $( "<ul/>", {
-                "class": "koccimu",
-                html: items.join( "" )
-            }).appendTo( "#categories");
+
+            var $categoryWrapper = $("#categories");
+            var $categoryTemplate = $("#template");
+
+            $.each(data, function(key, val) {
+                var categoryId = "category-" + val.id;
+                $categoryWrapper.append('<div id="' + categoryId + '" </div>');
+                $("#" + categoryId).loadTemplate($categoryTemplate,
+                    {
+                        title: val.title,
+                        picture: 'http://193.158.235.145:9000/' + val.imageURL
+                    });
+            });
         });
     }
 };
