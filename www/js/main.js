@@ -36,7 +36,14 @@ var Common = {
             cache: false
         })
         .done(function(html) {
-            window.location.href = "#" + partID + suffix;
+
+            var hash = partID;
+
+            if (suffix != undefined) {
+                hash = hash + suffix
+            }
+
+            window.location.href = "#" + hash;
             var $content = $("#content");
             oldContent = $content.html();
             $content.html(html);
