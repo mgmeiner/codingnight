@@ -42,7 +42,7 @@ var Common = {
 
             $.each(data, function(key, val) {
                 var categoryId = "category-" + val.id;
-                $categoryWrapper.append('<div id="' + categoryId + '" </div>');
+                $categoryWrapper.append('<div id="' + categoryId + '" class="category-box"></div>');
                 $("#" + categoryId).loadTemplate($categoryTemplate,
                     {
                         title: val.title,

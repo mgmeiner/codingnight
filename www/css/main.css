@@ -1,3 +1,19 @@
 .buttonborder {
     padding-top: 3px;
 }
+
+.overlay {
+    top: 138px;
+    position: absolute;
+    height: 27px;
+    opacity: 0.82;
+    background-color: #3E6790;
+    width: 321px;
+    color: #ffffff;
+}
+
+.category-box {
+    position: relative;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
