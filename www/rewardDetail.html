@@ -1,5 +1,6 @@
 <script type="text/javascript">
-    Common.displayRewardDetail(2);
+    var reward = window.location.hash.slice(window.location.hash.indexOf('-') + 1, window.location.hash.length);
+    Common.displayRewardDetail(reward);
 </script>
 
 <script type="text/html" id="template">
