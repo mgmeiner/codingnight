@@ -27,6 +27,7 @@ var Common = {
             var $content = $("#content");
             oldContent = $content.html();
             $content.html(html);
+            $content.trigger("create");
         });
     },
 
