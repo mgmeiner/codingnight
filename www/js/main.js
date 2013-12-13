@@ -71,10 +71,6 @@ var Common = {
 	
     displayCategories: function() {
         $.getJSON("http://extra.apiary.io/reward", function( data ) {
-            var items = [];
-            $.each( data, function(key, val) {
-                items.push(val.title, val.imageURL, val.id);
-            });
 
             var $categoryWrapper = $("#categories");
             var $categoryTemplate = $("#template");
@@ -87,6 +83,21 @@ var Common = {
                         title: val.title,
                         picture: 'http://193.158.235.145:9000/' + val.imageURL
                     });
+            });
+        });
+    },
+
+    displayRewardDetail: function(id) {
+        $.getJSON("http://extra.apiary.io/reward/" + id, function(data) {
+            $.each(data, function(key, val) {
+                 $("#rewardDetail").loadTemplate($("#template"),
+                 {
+                        title: 'Artikelname: ' + val.title,
+                        description: 'Beschreibung: ' + val.description,
+                        manufacturer: 'Hersteller: ' +val.manufacturer,
+                        points: 'Punkte: ' + val.points,
+                        picture: 'http://193.158.235.145:9000/' + val.imageURL
+                });
             });
         });
     },
