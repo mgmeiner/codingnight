@@ -16,6 +16,10 @@ function checkanker() {
  
     if (anker == '') {
         Common.switchContent('start');
+    } else if (anker.contains('-')) {
+        anker = anker.slice(0, anker.indexOf('-'));
+        var someId = window.location.hash.slice(window.location.hash.indexOf('-') + 1, window.location.hash.length);
+        Common.switchContent(anker, '-' + someId);
     } else {
         Common.switchContent(anker);
     }
